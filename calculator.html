@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Roboto", serif;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .main {
+            width: 100vw;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            /* background-color: beige; */
+
+        }
+
+        .row1 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* position:absolute; */
+        }
+
+        .row2 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .row3 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .row4 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .n-main {
+            background-color: #DCD9D4;
+            background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.50) 0%, rgba(0, 0, 0, 0.50) 100%), radial-gradient(at 50% 0%, rgba(255, 255, 255, 0.10) 0%, rgba(0, 0, 0, 0.50) 50%);
+            background-blend-mode: soft-light, screen;
+            min-width: 24vw;
+            height: 60%;
+            /* border:2px solid black; */
+            border-radius: 8px;
+            box-shadow: 1px 1px 15px black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 10px;
+            padding: 10px;
+        }
+
+        .button {
+            font-size: 20px;
+            min-width: 5vw;
+            height: 9vh;
+            /* text-align: center; */
+            /* margin-top:6px; */
+            border-radius: 7px;
+            background-color: rgb(210, 210, 210);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 0.2vw;
+        }
+
+        .button:hover {
+            background-color: rgb(56, 186, 215);
+        }
+
+        input {
+            width: 90%;
+            margin-bottom: 20px;
+            padding: 8px 17px;
+            font-size: 25px;
+            font-weight: 800;
+            text-align: right;
+            border-radius: 8px;
+            color: purple;
+        }
+
+        input::placeholder {
+            color: blue;
+        }
+
+        #equal {
+            background-color: rgb(54, 247, 54);
+        }
+
+        h2 {
+            position: absolute;
+            top: 7%;
+            left: 35%;
+            font-size: 3vw;
+            color: yellow;
+        }
+
+
+        @media only screen and (min-width:700px) and (max-width:1300px) {
+            .button {
+                font-size: 20px;
+                min-width: 9vw;
+                height: 9vh;
+            }
+
+            input {
+                width: 95%;
+                margin-bottom: 20px;
+                padding: 8px 17px;
+                font-size: 25px;
+                text-align: right;
+                border-radius: 8px;
+            }
+
+            .n-main {
+                background-color: white;
+                min-width: 24vw;
+                height: 60vh;
+            }
+
+            .button:hover {
+                background-color: rgb(56, 186, 215);
+            }
+        }
+
+        @media only screen and (max-width:700px) {
+            .button {
+                font-size: 23px;
+                min-width: 17vw;
+                height: 9vh;
+                margin-left: 9px;
+            }
+
+            .button:hover {
+                background-color: rgb(108, 216, 240);
+                color: white;
+            }
+
+            input {
+                width: 92%;
+                padding: 8px 15px;
+            }
+
+            .n-main {
+                background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+                min-width: 24vw;
+                height: 60vh;
+                margin: 20px;
+            }
+
+            h2 {
+                position: absolute;
+                top: 8%;
+                left: 3%;
+                font-size: 9vw;
+                color: yellow;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Welcome To Calculator</h2>
+    <div class="main">
+        <div class="n-main">
+            <input type="text" placeholder="Enter your Number..." disabled id="display">
+            <div class="row1">
+                <div class="button" onclick="appendToDisplay('7')">7</div>
+                <div class="button" onclick="appendToDisplay('8')">8</div>
+                <div class="button" onclick="appendToDisplay('9')">9</div>
+                <div class="button" onclick="appendToDisplay('/')">/</div>
+            </div>
+            <div class="row2">
+                <div class="button" onclick="appendToDisplay('4')">4</div>
+                <div class="button" onclick="appendToDisplay('5')">5</div>
+                <div class="button" onclick="appendToDisplay('6')">6</div>
+                <div class="button" onclick="appendToDisplay('%')">%</div>
+            </div>
+            <div class="row3">
+                <div class="button" onclick="appendToDisplay('1')">1</div>
+                <div class="button" onclick="appendToDisplay('2')">2</div>
+                <div class="button" onclick="appendToDisplay('3')">3</div>
+                <div class="button" onclick="appendToDisplay('+')">+</div>
+            </div>
+            <div class="row4">
+                <div class="button" onclick="clearDisplay()">C</div>
+                <div class="button" onclick="appendToDisplay('0')">0</div>
+                <div class="button" onclick="appendToDisplay('-')">-</div>
+                <div class="button" id="equal" onclick="calculateResult()">=</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function appendToDisplay(value) {
+            document.getElementById("display").value += value;
+        }
+
+        function clearDisplay() {
+            document.getElementById("display").value = "";
+        }
+
+        function calculateResult() {
+            try {
+                document.getElementById("display").value = eval(document.getElementById("display").value);
+            } catch {
+                alert("Invalid Input");
+                clearDisplay();
+            }
+        }
+    </script>
+</body>
+
+</html>
